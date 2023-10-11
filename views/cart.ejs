@@ -2,31 +2,26 @@
 <html lang="en">
   <head>
     <%- include("include/head.ejs") %>
-     
-   </head>
+  </head>
 
   <body>
-    <header class="main-header">
-      <nav class="main-header-nav">
-        <ul class="main-header-list">
-          <li class="main-header-item"><a href="/">Shop</a></li>
-          <li class="main-header-item" class="active">
-            <a href="/products">Products</a>
-          </li>
-          <li class="main-header-item" >
-            <a href="/cart">Cart</a>
-          </li>
-          <li class="main-header-item" >
-            <a href="/orders">Orders</a>
-          </li>
-          <li class="main-header-item" class="active">
-            <a href="/admin/add-product">Add Product</a>
-          </li>
-          <li class="main-header-item" class="active">
-            <a href="/admin/admin-products">Admin Products</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <%- include('include/navigation.ejs') %>
+    <main>
+      <% if (products.length > 0) { %>
+      <ul>
+        <% products.forEach(product => { %>
+        <li><p><%=product.productData.title %> (<%=product.qty%>)</p>
+        <form action="/cart-delete-item" method="post">
+          <button class="btn" type="submit">Delete</button>
+          <input type="hidden" value="<%= product.productData.id %>" name="productId">
+          <input type="hidden" value="<%= product.productData.price %>" name="price">
+        </form></li>
+        <% })%>
+      </ul>
+      <% }else {%>
+      <H1> No Products in Cart</H1>
+
+      <% }%>
+    </main>
   </body>
 </html>

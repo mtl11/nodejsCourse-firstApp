@@ -6,28 +6,7 @@
    </head>
 
   <body>
-    <header class="main-header">
-      <nav class="main-header-nav">
-        <ul class="main-header-list">
-          <li class="main-header-item"><a href="/">Shop</a></li>
-          <li class="main-header-item" class="active">
-            <a href="/products">Products</a>
-          </li>
-          <li class="main-header-item" >
-            <a href="/cart">Cart</a>
-          </li>
-          <li class="main-header-item" >
-            <a href="/orders">Orders</a>
-          </li>
-          <li class="main-header-item" class="active">
-            <a href="/admin/add-product">Add Product</a>
-          </li>
-          <li class="main-header-item" class="active">
-            <a href="/admin/admin-products">Admin Products</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <%- include('include/navigation.ejs') %>
 
     <main>
         <% if (products.length > 0) { %>
@@ -46,9 +25,12 @@
                             <p class="product__description"><%= product.description %></p>
                         </div>
                         <div class="card__actions">
-                          <form action="/add-to-cart" method="POST">
-                            <button class="btn">Add to Cart</button>
-                          </form>
+                            <form action="/cart" method="POST">
+                                <button class="btn" type="submit">
+                                    Add To Cart
+                                </button>
+                                <input type="hidden" name="productId" value="<%= product.id %>">
+                            </form>
                            
                         </div>
                     </article>

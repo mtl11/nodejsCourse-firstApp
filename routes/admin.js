@@ -10,11 +10,10 @@ router.get('/admin-products', productController.getAdminProducts);
 
 router.post('/add-product',productController.postAddProduct);
 
-// exports.getAddProduct = (req, res, next) => {
-//     res.render("admin-products", {
-//       pageTitle: "Add Product",
-//       path: "/admin/add-product",
-//     });
-//   };
+router.get('/edit-product/:productId', productController.getEditProduct);
+
+router.post('/edit-product',productController.postEditProduct);
+
+router.post('/delete-product',productController.postDeleteProduct);
 
 module.exports = router;
